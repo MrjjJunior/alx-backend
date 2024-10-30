@@ -2,6 +2,7 @@
 """MRU Caching"""
 from base_caching import BaseCaching
 
+
 class MRUCache(BaseCaching):
     """MRU Cache system"""
 

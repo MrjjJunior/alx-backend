@@ -3,6 +3,7 @@
 from base_caching import BaseCaching
 from collections import defaultdict
 
+
 class LFUCache(BaseCaching):
     """LFU Cache system inheriting from BaseCaching"""
 
@@ -18,37 +19,30 @@ class LFUCache(BaseCaching):
             return
 
         if key in self.cache_data:
-            # Update existing item
             self.cache_data[key] = item
             self.frequency[key] += 1
             self.usage_order.remove(key)
         else:
-            # Check if we need to discard an item
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                # Find the LFU item(s)
                 min_freq = min(self.frequency.values())
-                lfu_keys = [k for k, v in self.frequency.items() if v == min_freq]
+                lfu = [k for k, v in self.frequency.items() if v == min_freq]
 
-                # If multiple LFU items, apply LRU on them
-                if len(lfu_keys) > 1:
+                if len(lfu) > 1:
                     for k in self.usage_order:
-                        if k in lfu_keys:
+                        if k in lfu:
                             discard_key = k
                             break
                 else:
-                    discard_key = lfu_keys[0]
+                    discard_key = lfu[0]
 
-                # Discard the selected item
                 print(f"DISCARD: {discard_key}")
                 del self.cache_data[discard_key]
                 del self.frequency[discard_key]
                 self.usage_order.remove(discard_key)
 
-            # Insert new item
             self.cache_data[key] = item
             self.frequency[key] = 1
 
-        # Update usage order to mark as recently used
         self.usage_order.append(key)
 
     def get(self, key):
@@ -56,7 +50,6 @@ class LFUCache(BaseCaching):
         if key is None or key not in self.cache_data:
             return None
 
-        # Update usage frequency and order
         self.frequency[key] += 1
         self.usage_order.remove(key)
         self.usage_order.append(key)
