@@ -1,0 +1,39 @@
+{
+  "name": "queuing_system_in_js",
+  "version": "1.0.0",
+  "description": "How to run a Redis server on your machine\r -> Install Redis on machine\r $ sudo apt install redis-server\r -> Start redis service\r $ sudo systemctl start redis\r -> Enable redis service to start at boot\r $ sudo systemctl enable redis",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint",
+    "check-lint": "lint [0-9]*.js",
+    "test": "mocha --require @babel/register --exit",
+    "dev": "nodemon --exec babel-node --presets @babel/preset-env"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "kue": "^0.11.1",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.0",
+    "@babel/core": "^7.8.0",
+    "@babel/node": "^7.8.0",
+    "@babel/preset-env": "^7.8.2",
+    "@babel/register": "^7.8.0",
+    "@eslint/js": "^9.16.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^28.9.0",
+    "globals": "^15.13.0",
+    "mocha": "^11.0.1",
+    "nodemon": "^2.0.2",
+    "request": "^2.88.0",
+    "sinon": "^7.5.0"
+  },
+  "keywords": []
+}
